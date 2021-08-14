@@ -17,15 +17,15 @@ app.use(cors());
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.json());
 connectDB();
-app.get('*',(req,res) => {
-    res.sendFile(path.join(__dirname,'public/index.html'));
-});
 app.use('/api/transaction',transaction);
 app.use('/api/order',order);
 app.use('/api/user',user);
 app.use('/api/item',items);
 app.use('/api/expense',expense);
 app.use('/api/expense-item',expense_item);
+app.get('*',(req,res) => {
+    res.sendFile(path.join(__dirname,'public/index.html'));
+});
 
 app.listen(PORT,() => {
     console.log(`server is running at ${PORT}`)

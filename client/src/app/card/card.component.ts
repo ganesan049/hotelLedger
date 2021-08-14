@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
   date:string = "";
   amount:Number = 0;
   item:String = "";
-  displayedColumns: string[] = ['item', 'quantity', 'amount'];
+  displayedColumns: string[] = ['item', 'price','quantity', 'amount'];
   dataSource:string[] = [];
   constructor() {
   }

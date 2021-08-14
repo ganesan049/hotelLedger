@@ -27,14 +27,20 @@
 
         <!-- amount Column -->
         <ng-container matColumnDef="amount">
-          <mat-header-cell *matHeaderCellDef> amount </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+          <mat-header-cell *matHeaderCellDef> Total Amount </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.amount * element.quantity}} </mat-cell>
         </ng-container>
 
         <!-- Quantity Column -->
         <ng-container matColumnDef="quantity">
           <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+        </ng-container>
+
+        <!-- price Column -->
+        <ng-container matColumnDef="price">
+          <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

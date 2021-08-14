@@ -53,7 +53,7 @@ export class AddExpenseComponent implements OnInit {
       let {item,total} = selectedItem;
       this.selectedItems.unshift({item,total});
       this.total = this.selectedItems.reduce((acc,curr) => {
-        return acc+(curr.total * curr.total)
+        return acc+curr.total;
       },0);
     this.disabled = this.selectedItems.length == 0;
     this.removeSelectItem();

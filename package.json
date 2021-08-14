@@ -18,8 +18,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node server",
-    "server": "nodemon server",
+    "start": "node app",
+    "server": "nodemon app",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "debug": "node server"

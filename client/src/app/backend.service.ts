@@ -8,7 +8,7 @@ import { ServiceService } from './shared/service.service';
   providedIn: 'root'
 })
 export class BackendService {
-  apiUrl = "http://localhost:5000"
+
   token = localStorage.getItem('token') || "null";
   constructor(private http: HttpClient, private api:ServiceService) { }
 

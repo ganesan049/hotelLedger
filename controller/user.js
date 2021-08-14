@@ -115,7 +115,7 @@ exports.signIn = async (req,res) => {
  */
 
 exports.resetPassword = async (req,res) => {
-    const path = "http://localhost:5000";
+    const path = process.env.CLIENT_URL;
 
     try {
         crypto.randomBytes(32, (err,buffer) => {
@@ -148,7 +148,7 @@ exports.resetPassword = async (req,res) => {
                         subject: "Reset Password",
                         html: `
                       <p>You requested for password reset</p>
-                      <h5>click in This <a href="${path}/api/user/reset/${token}">Link</a></h5>
+                      <h5>click in This <a href="${path}/reset-token/${token}">Link</a></h5>
                       `
                       },(err,info) => {
                           if(err){
@@ -181,10 +181,9 @@ exports.resetToken = async (req,res) => {
 
     try {
         
-        const resetToken = req.params.token;
-        const {password} = req.body;
+        const {token,password} = req.body;
     
-        Users.findOne({resetToken,expireToken:{$gt:new Date()}})
+        Users.findOne({resetToken:token,expireToken:{$gt:new Date()}})
         .then(user => {
             if(!user){
                 return res.status(422).json({

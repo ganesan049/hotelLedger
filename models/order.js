@@ -1,15 +1,33 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types;
 
-const OrdersSchema = new mongoose.Schema({
+const ItemSchema = new mongoose.Schema({
   item: {
-    type: Array,
+    type: String,
     trim: true,
     required: [true, 'Please add some Item']
   },
   quantity: {
-    type: Array,
-    required: [true, 'Please add a Quantity']
+    type: Number,
+    trim: true,
+    required: [true, 'Please add some Quantity']
+  },
+  amount: {
+    type: Number,
+    trim: true,
+    required: [true, 'Please add some amount']
+  },
+})
+
+const OrdersSchema = new mongoose.Schema({
+  total: {
+    type: Number,
+    trim: true,
+    required: [true, 'Please add some Item']
+  },
+  order: {
+    type: [ItemSchema],
+    required: [true, 'Please add some order']
   },
   user:{
     type:ObjectId,

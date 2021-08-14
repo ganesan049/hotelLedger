@@ -1,0 +1,81 @@
+<div class="body">
+  <div class="card">
+    <mat-card class="example-card">
+      <a *ngIf="this.alertMessages" class="es-alert-warning" color="warn" mat-stroked-button
+      routerLink=".">{{msgs}}</a>
+      <mat-card-header>
+        <mat-card-title class="dropdown-title">
+          <span class="title">
+            EXPENSES
+          </span>
+          <span class="item-btn">
+            <button mat-raised-button color="accent" [routerLink]="'/add-expense-item'">ADD ITEM</button>
+          </span>
+        </mat-card-title>
+        <div class="select">
+          <form [formGroup]="itemForm" (ngSubmit)="addSelectedItem(itemForm.value)">
+            <mat-form-field appearance="fill">
+              <mat-label>Choose Item</mat-label>
+              <mat-select formControlName="item">
+                <mat-option  *ngFor="let item of Items" [value]="item.item">
+                  <span class="selectedItem-name">
+                    {{item.item.toUpperCase()}}
+                  </span>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Amount</mat-label>
+              <input matInput type="number" formControlName="total" min="1">
+              <mat-error *ngIf="f.total.errors">Amount Required</mat-error>
+            </mat-form-field>
+            <div class="btn-grp">
+              <button mat-raised-button class="es-submit-button" color="accent" [disabled]="!itemForm.valid">
+                  Select
+              </button>
+              <button mat-raised-button class="es-submit-button" color="accent" (click)="removeSelectItem()">
+                  Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="select-container">
+          <!-- <div class="container-title">Items Container</div> -->
+          <div class="container">
+            <div class="selected-items" *ngIf="selectedItems.length > 0;else noItem">
+              <mat-card *ngFor="let item of selectedItems; let i = index">
+                <div class="selectedItem">
+                  <div class="selectedItem-name">
+                    {{item.item.toUpperCase()}}
+                  </div>
+                  -
+                  <div class="selectedItem-value">
+                    {{item.total}}
+                  </div>
+                  <button class="selectedItem-cancel" (click)="removeSelectedItem(i)">
+                    <mat-icon aria-hidden="false" aria-label="Example cancel icon">cancel</mat-icon>
+                  </button>
+                </div>
+              </mat-card>
+            </div>
+            <ng-template #noItem>
+              <mat-card>
+                Add Some Items...
+              </mat-card>
+            </ng-template>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="actions">
+        <div class="amount">
+          <span class="amount-header">Amount:</span>
+          <span class="amount-value">{{total}}</span>
+        </div>
+        <button mat-raised-button [disabled]="disabled" (click)="onSubmit()">Submit</button>
+        <button mat-raised-button [routerLink]="'/dashboard'">Home</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

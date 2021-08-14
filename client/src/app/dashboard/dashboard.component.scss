@@ -1,0 +1,60 @@
+.chips{
+  margin: 1rem;
+}
+.example-container {
+  // width: 400px;
+  // height: 200px;
+  // margin: 12px;
+  // border: 1px solid #555;
+  // position: relative;
+}
+
+.category{
+  display: flex;
+  margin-top: 6rem;
+  flex-direction: column;
+}
+.category-item{
+  display: inline-block;
+  margin: 1rem auto;
+}
+::ng-deep .mat-drawer-inner-container{
+  background-color: antiquewhite;
+}
+::ng-deep .mat-drawer{
+  width: 40vw;
+}
+
+mat-drawer-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+.card{
+  margin: 0.5rem;
+  height: 68vh;
+  overflow: scroll;
+  box-shadow: inset 0 -3em 3em rgb(0 0 0 / 10%), 0 0 0 2px rgb(255 255 255), 0.3em 0.3em 1em rgb(0 0 0 / 30%);
+}
+.example-button-container {
+  display: flex;
+  justify-content: space-evenly;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 1rem 0;
+  align-items: center;
+  vertical-align: middle;
+  width: 100vw;
+  z-index: 100;
+  font-size: xx-large;
+}
+.logout{
+  right: 0;
+  position: absolute;
+  margin: 1rem;
+  cursor: pointer;
+}

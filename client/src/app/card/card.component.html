@@ -1,0 +1,68 @@
+<div *ngIf="type == 'orders';else expense_content">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="order">
+        <mat-panel-title>
+          <div class="title">
+            <span class="delete-btn">
+              <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon" (click)="deleteOrder()">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </span>
+            <div class="date">
+              {{date}}
+            </div>
+          </div>
+        </mat-panel-title>
+        <mat-panel-description class="amount">
+          {{amount}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Item Column -->
+        <ng-container matColumnDef="item">
+          <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.item}} </mat-cell>
+        </ng-container>
+
+        <!-- amount Column -->
+        <ng-container matColumnDef="amount">
+          <mat-header-cell *matHeaderCellDef> amount </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+        </ng-container>
+
+        <!-- Quantity Column -->
+        <ng-container matColumnDef="quantity">
+          <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<ng-template #expense_content>
+  <mat-card class="expense">
+    <mat-panel-title class="expense-container">
+      <span class="expense-delete-btn">
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon" (click)="deleteOrder()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
+      <div class="expense-title">
+        <div class="date">
+          {{date}}
+        </div>
+        <div class="item">
+          {{item}}
+        </div>
+        <div class="amount">
+          {{amount}}
+        </div>
+      </div>
+    </mat-panel-title>
+  </mat-card>
+</ng-template>

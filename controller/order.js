@@ -9,18 +9,17 @@ const Orders = require("../models/order");
  exports.addOrder = async (req, res) => {
     try {
         const user = req.user._id;
-        const {item,quantity} = req.body;
-
-        if(item?.length == 0 || quantity?.length == 0){
+        const {total,order} = req.body;
+        // console.log(total,order)
+        if(!total || order.length == 0){
             let err = new Error("Add Some Items");
             return res.status(400).json({
                 message: err.message,
               });
         }
-        const orders = new Orders({item,quantity,user});
+        const orders = new Orders({total,order,user});
         orders.save()
         .then(savedOrder => {
-            console.log(savedOrder);
             return res.status(200).json({
                 message:`Order Saved id:${savedOrder._id}, ${savedOrder}`
             })
@@ -42,22 +41,21 @@ const Orders = require("../models/order");
  exports.editOrder = async (req, res) => {
     try {
         const user = req.user._id;
-        const {item,quantity,_id} = req.body;
-        console.log(user,item,quantity,_id)
-        if(item?.length == 0 || quantity?.length == 0 || !_id){
+        const {total,order,_id} = req.body;
+        if(!total || order.length == 0 || !_id){
             let err = new Error("Add Some Items");
             return res.status(400).json({
                 message: err.message,
               });
         }
-        const order = await Orders.findById(_id);
-        if(!order) throw Error('Order Does not exist');
+        const orders = await Orders.findById(_id);
+        if(!orders) throw Error('Order Does not exist');
 
-        order.item = item;
-        order.quantity = quantity;
-        order.user = user;
+        orders.total = total;
+        orders.order = order;
+        orders.user = user;
 
-        const savedOrder = await order.save();
+        const savedOrder = await orders.save();
         console.log(savedOrder)
         if(!savedOrder) throw Error('Something went wrong');
         return res.status(200).json({
@@ -88,7 +86,7 @@ const Orders = require("../models/order");
                 message: err.message,
               });
         }
-        const orders = await Orders.find({user});
+        const orders = await Orders.find({user}).sort({'updatedAt':-1});
         if(!orders) throw Error('Something went wrong');
         return res.status(200).json({
             message:`Number of Items ${orders.length}`,

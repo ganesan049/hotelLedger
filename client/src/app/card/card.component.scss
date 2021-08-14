@@ -1,0 +1,57 @@
+mat-expansion-panel-header{
+  background-color: beige;
+}
+
+.amount{
+  font-weight: bold;
+}
+
+::ng-deep .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+  justify-content: center;
+}
+.item{
+  font-size: 1.2rem;
+  width: 100px;
+  font-weight: bold;
+}
+::ng-deep .expense {
+  background: beige;
+  color: rgba(0,0,0,.87);
+  margin: .3rem 0;
+}
+
+.order{
+  height: 5rem;
+  margin: .3rem 0;
+}
+
+.expense-title{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.expense-container{
+  justify-content: space-between;
+}
+
+.title{
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-around;
+}
+::ng-deep .mat-content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  margin: 1rem 0;
+  height: 50px;
+  overflow: hidden;
+}
+.date{
+  display: flex;
+  align-items: center;
+}

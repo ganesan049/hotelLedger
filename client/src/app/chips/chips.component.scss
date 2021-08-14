@@ -1,0 +1,8 @@
+.my-chip .mat-chip-selected {
+  background-color: #000 !important;
+  color: #fff;
+}
+
+::ng-deep .mat-chip-list-wrapper{
+  justify-content: center;
+}

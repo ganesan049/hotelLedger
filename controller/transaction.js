@@ -8,7 +8,6 @@ const Transactions = require("../models/transaction");
 
  exports.addTransaction = async (req, res) => {
     try {
-        console.log("Executed...")
         const user = req.user._id;
         const {item,amount} = req.body;
 
@@ -21,7 +20,6 @@ const Transactions = require("../models/transaction");
         const transactions = new Transactions({item,amount,user});
         transactions.save()
         .then(savedTransaction => {
-            console.log(savedTransaction);
             return res.status(200).json({
                 message:`transaction Saved id:${savedTransaction._id}, ${savedTransaction}`
             })
@@ -44,7 +42,6 @@ const Transactions = require("../models/transaction");
     try {
         const user = req.user._id;
         const {item,amount,_id} = req.body;
-        console.log(user,item,amount,_id)
         if(!item || !amount || !_id){
             let err = new Error("Add Some Items");
             return res.status(400).json({
@@ -59,7 +56,6 @@ const Transactions = require("../models/transaction");
         transaction.user = user;
 
         const savedTransaction = await transaction.save();
-        console.log(savedTransaction)
         if(!savedTransaction) throw Error('Something went wrong');
         return res.status(200).json({
             item:savedTransaction.item,

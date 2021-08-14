@@ -4,7 +4,6 @@ const
  = require("../models/user")
 
 module.exports = (req, res, next) => {
-    console.log(req.headers)
     const {
         authorization
     } = req.headers;
@@ -14,7 +13,6 @@ module.exports = (req, res, next) => {
         })
     }
     const token = authorization.replace("Bearer ", "")
-    console.log(token," Token")
     jwt.verify(token, process.env.JWT_SECRETKEY, (err, payload) => {
         if (err) {
             console.log(err)
@@ -27,11 +25,15 @@ module.exports = (req, res, next) => {
         } = payload
         Users.find({_id})
             .then(userData => {
+                if(userData.length == 0){
+                    throw Error("Users is not found");
+                }
                 req.user = userData[0];
                 next()
             })
             .catch(err => {
                 console.log(err)
+                res.status(400).send({message:err.message})
             })
     })
 }

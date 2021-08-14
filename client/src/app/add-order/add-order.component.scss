@@ -1,0 +1,65 @@
+.example-card {
+  max-width: 400px;
+}
+
+::ng-deep .mat-card-header{
+  flex-direction: column !important;
+}
+
+::ng-deep .mat-card-header .mat-card-title {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 100vw;
+  align-items: center;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.btn-grp {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.container-title{
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.container {
+  height: 50vh;
+  overflow: scroll;
+}
+.container > .mat-card,
+.selected-items > .mat-card{
+  background-color: beige;
+}
+
+.selectedItem {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  height: 100%;
+}
+.amount{
+  display: inline-block;
+}
+.actions{
+  display: flex;
+  width: 100%;
+  font-size: x-large;
+  justify-content: space-evenly;
+}
+.container{
+  margin: 1.2rem 0;
+}
+
+.selectedItem-name,.selectedItem-value{
+  font-weight: bold;
+}

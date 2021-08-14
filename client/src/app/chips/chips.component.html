@@ -1,0 +1,5 @@
+<mat-chip-list selectable>
+  <mat-chip *ngFor="let filter of filters" [value]="filter" (click)="toggleSelection(filter.value)">
+      {{filter.value}}
+  </mat-chip>
+</mat-chip-list>

@@ -1,0 +1,37 @@
+<div class="layout">
+  <div class="loginCard">
+    <mat-card class="example-card">
+      <mat-card-header class="header">
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+          <a *ngIf="this.alertMessages" class="es-alert-warning" color="warn" mat-stroked-button
+          routerLink=".">{{msgs}}</a>
+          <div class="form-group">
+              <label for="email">email</label>
+              <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">email is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+              </div>
+          </div>
+          <button mat-raised-button class="es-submit-button" color="accent" [disabled]="!loginForm.valid">
+              Login
+          </button>
+        </form>
+        <div class="submit-buttons">
+          <button mat-raised-button class="es-submit-button" color="accent" routerLink="/forgot-password">Forgot
+            Password</button>
+          <button mat-raised-button class="es-submit-button" color="accent" routerLink="/register">Register</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

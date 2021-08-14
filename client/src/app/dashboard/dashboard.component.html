@@ -1,0 +1,59 @@
+<div class="body">
+<mat-drawer-container class="example-container" [hasBackdrop]="'true'">
+  <mat-drawer #drawer [mode]="'side'">
+    <div class="category">
+      <a class="category-item" [routerLink]="'/add-order-item'">Add Order Items</a>
+      <a class="category-item" [routerLink]="'/add-expense-item'">Add Expense Items</a>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>{{name}}</span>
+      <span class="example-spacer"></span>
+      <p (click)="logOut()" class="logout">Logout</p>
+    </mat-toolbar>
+      <div class="tabs">
+        <mat-tab-group mat-align-tabs="center">
+          <mat-tab label="Orders">
+            <div class="chips">
+              <app-chips (date)="filterDate($event,'orders')" ></app-chips>
+            </div>
+            <div class="card">
+              <div class="example-button-container">
+                <div class="amount">
+                  <span class="amount-header">Amount:</span>
+                  <span class="amount-value">{{totalOrderAmount}}</span>
+                </div>
+                <button mat-fab color="warn" aria-label="Example icon button with a home icon" (click)="openDialog('order')">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+              <app-card *ngFor="let order of orders" [order]="order" [type]="'orders'" (deleteId)="deleteOrder($event,'orders')"></app-card>
+            </div>
+          </mat-tab>
+          <mat-tab label="Expenses">
+              <div class="chips">
+                <app-chips (date)="filterDate($event,'expenses')" ></app-chips>
+              </div>
+              <div class="card">
+                <div class="example-button-container">
+                  <div class="amount">
+                    <span class="amount-header">Amount:</span>
+                    <span class="amount-value">{{totalExpenseAmount}}</span>
+                  </div>
+                  <button mat-fab color="warn" aria-label="Example icon button with a home icon" (click)="openDialog('expense')">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+                <app-card *ngFor="let order of expenses" [order]="order" [type]="'expenses'" (deleteId)="deleteOrder($event,'expenses')"></app-card>
+              </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+</div>
+

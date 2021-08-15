@@ -8,7 +8,7 @@ import { Observable, of, throwError } from 'rxjs';
 })
 export class ServiceService {
 
-  // apiUrl = "http://localhost:5000"
+  apiUrl = ""
 
   img = '';
   name = '';
@@ -53,8 +53,8 @@ export class ServiceService {
         .set('Accept', 'application/json')
         // .set('Authorization',localStorage.getItem('token') || "null")
     }
-    return this.http.get(`${url}`,{ headers, params });
-    // return this.http.get(`${this.apiUrl}${url}`,{ headers, params });
+    // return this.http.get(`${url}`,{ headers, params });
+    return this.http.get(`${this.apiUrl}${url}`,{ headers, params });
   };
 
   public post (url: string, body: any, params?: HttpParams, headers?: HttpHeaders){
@@ -63,13 +63,13 @@ export class ServiceService {
       headers = new HttpHeaders()
         .set('Accept', 'application/json')
     }
-     return this.http.post(`${ url }`, body, { params, headers});
-    //  return this.http.post(`${ this.apiUrl }${ url }`, body, { params, headers});
+    //  return this.http.post(`${ url }`, body, { params, headers});
+     return this.http.post(`${ this.apiUrl }${ url }`, body, { params, headers});
     }
   public delete (url: string,body:any,  params?: HttpParams, headers?: HttpHeaders ){
     //console.log(`url: ${url}`);
-    return this.http.delete(`${ url }`, { params, headers, body});
-    // return this.http.delete(`${ this.apiUrl }${ url }`, { params, headers, body});
+    // return this.http.delete(`${ url }`, { params, headers, body});
+    return this.http.delete(`${ this.apiUrl }${ url }`, { params, headers, body});
   }
 
   public handleError (error: HttpErrorResponse) {

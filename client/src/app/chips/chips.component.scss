@@ -1,8 +1,9 @@
-.my-chip .mat-chip-selected {
-  background-color: #000 !important;
-  color: #fff;
+::ng-deep .mat-chip.mat-standard-chip::after {
+  background: rgb(0, 119, 255);
 }
-
 ::ng-deep .mat-chip-list-wrapper{
   justify-content: center;
+}
+::ng-deep .mat-standard-chip:hover::after {
+  opacity: .6;
 }

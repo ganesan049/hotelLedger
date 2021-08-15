@@ -15,7 +15,6 @@ export class ChipsComponent implements OnInit {
   endWeekDate = this.currentDate.clone().endOf('week').format('YYYY-MM-DD');
   startMonthDate = this.currentDate.clone().startOf('month').format('YYYY-MM-DD');
   endMonthDate = this.currentDate.clone().endOf('month').format('YYYY-MM-DD');
-
   filters = [{value:'Today',date:{startDate:this.todayDate,endDate:this.todayDate},selected:true},{value:'Yesterday',date:{startDate:this.yesterdayDate,endDate:this.yesterdayDate}},{value:'Week',date:{startDate:this.startWeekDate,endDate:this.endWeekDate}},{value:'Month',date:{startDate:this.startMonthDate,endDate:this.endMonthDate}}];
   filtersDefault = [{value:'Today',date:{startDate:this.todayDate,endDate:this.todayDate}},{value:'Yesterday',date:{startDate:this.yesterdayDate,endDate:this.yesterdayDate}},{value:'Week',date:{startDate:this.startWeekDate,endDate:this.endWeekDate}},{value:'Month',date:{startDate:this.startMonthDate,endDate:this.endMonthDate}}];
   selectedFilter = 'Today';
@@ -24,6 +23,7 @@ export class ChipsComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    console.log(this.startWeekDate,this.endWeekDate)
   }
   toggleSelection(value: any) {
     let date:any;

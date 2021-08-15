@@ -99,6 +99,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([`/add-${type}`])
   }
   filterDate(date:any,type:any){
+    console.log(this.sourceExpenses);
     switch (type) {
       case 'expenses':
         this.expenses = this.sourceExpenses.filter(order => {
@@ -109,7 +110,9 @@ export class DashboardComponent implements OnInit {
               return moment(orderDate).isSame(date.startDate);
               case 'week':
               case 'month':
-              return moment(orderDate).isBetween(date.startDate,date.endDate);
+              return moment(orderDate).isBetween(date.startDate,date.endDate,
+                null, // can be year, month .... the granularity of your comaprison
+                '[]');
             default:
               return false;
           }
@@ -125,13 +128,16 @@ export class DashboardComponent implements OnInit {
               return moment(orderDate).isSame(date.startDate);
               case 'week':
               case 'month':
-              return moment(orderDate).isBetween(date.startDate,date.endDate);
+              return moment(orderDate).isBetween(date.startDate,date.endDate,
+                null, // can be year, month .... the granularity of your comaprison
+                '[]');
             default:
               return false;
           }
         });
         break;
     }
+
     this.calculateTotal();
   }
   deleteOrder(_id:any,type:any){
